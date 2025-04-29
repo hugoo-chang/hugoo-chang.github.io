@@ -7,72 +7,150 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="noise-overlay"></div>
-    
-    <div class="container">
-        <div class="section active" id="intro">
-            <div class="content">
-                <h1 class="quote">"<span class="typing-text">welcome</span>"</h1>
+    <div class="site-wrapper">
+        <!-- Vertical Sidebar -->
+        <div class="vertical-sidebar">
+            <div class="sidebar-content">
+                <div class="vertical-text">PORTFOLIO</div>
+                <div class="vertical-text">THE TALES OF E. HARRISON</div>
             </div>
         </div>
 
-        <div class="section" id="about">
-            <div class="content">
-                <h2>About</h2>
-                <p>👋 I am a final year Computational Social Science student at the University of Amsterdam (UvA). Currently working on my thesis project.</p>
-                <p> I am passionate about applying machine learning techniques to solve complex social problems. Building ML models 🚀</p>
-            </div>
-        </div>
-
-        <div class="section" id="projects">
-            <div class="content">
-                <h2>Projects</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Business Analytics</h3>
-                        <p>A data warehouse solution for business analytics applications.</p>
-                        <div class="project-details">
-                            <span class="project-tag"> R </span>
-                            <a href="project-business-analytics.html" class="project-link">View Details</a>
-                            <a href="https://github.com/hugoo-chang/business_analytics_DW" target="_blank" class="project-link">GitHub</a>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Project 1 -->
+            <section class="project-section" id="project1">
+                <div class="project-content">
+                    <div class="project-text">
+                        <h1 class="project-title">BUSINESS ANALYTICS DW</h1>
+                        <div class="project-author">By Your Name</div>
+                        
+                        <div class="project-description">
+                            <p>A data-driven approach to predicting and improving customer satisfaction in the restaurant industry through machine learning techniques. This project analyzes factors affecting customer satisfaction and provides actionable recommendations for business improvement.</p>
+                        </div>
+                        
+                        <a href="project-business-analytics.html" class="read-more">READ FULL PROJECT</a>
+                    </div>
+                    
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=800&width=800&query=data analytics dashboard with blue overlay" alt="Business Analytics Project">
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Project 2 -->
+            <section class="project-section" id="project2">
+                <div class="project-content reverse">
+                    <div class="project-text">
+                        <h1 class="project-title">DATA VISUALIZATION</h1>
+                        <div class="project-author">By Your Name</div>
+                        
+                        <div class="project-description">
+                            <p>Interactive data visualization exploring complex datasets with dynamic filtering. This project transforms raw data into meaningful insights through innovative visual representations and user-friendly interfaces.</p>
+                        </div>
+                        
+                        <a href="#" class="read-more">READ FULL PROJECT</a>
+                    </div>
+                    
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=800&width=800&query=data visualization charts with purple overlay" alt="Data Visualization Project">
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Project 3 -->
+            <section class="project-section" id="project3">
+                <div class="project-content">
+                    <div class="project-text">
+                        <h1 class="project-title">UI/UX DESIGN SYSTEM</h1>
+                        <div class="project-author">By Your Name</div>
+                        
+                        <div class="project-description">
+                            <p>A comprehensive design system for digital products with component library. This project establishes a cohesive visual language and interaction patterns to ensure consistency across multiple platforms and applications.</p>
+                        </div>
+                        
+                        <a href="#" class="read-more">READ FULL PROJECT</a>
+                    </div>
+                    
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=800&width=800&query=ui design components with blue overlay" alt="Design System Project">
+                    </div>
+                </div>
+            </section>
+            
+            <!-- About Section -->
+            <section class="project-section" id="about">
+                <div class="project-content reverse">
+                    <div class="project-text">
+                        <h1 class="project-title">ABOUT ME</h1>
+                        <div class="project-author">Developer & Designer</div>
+                        
+                        <div class="project-description">
+                            <p>I'm a developer and designer focused on creating minimal, effective digital experiences. My work combines clean aesthetics with functional design to deliver impactful results.</p>
+                            <p>With expertise in both front-end development and data analysis, I bring a unique perspective to every project.</p>
+                            
+                            <div class="skills-list">
+                                <div class="skill-item">💻 Code Craftsman</div>
+                                <div class="skill-item">📊 Data Explorer</div>
+                                <div class="skill-item">🎨 Design Thinker</div>
+                                <div class="skill-item">🔍 Problem Solver</div>
+                                <div class="skill-item">🌱 Continuous Learner</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#contact" class="read-more">CONTACT ME</a>
+                    </div>
+                    
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=800&width=800&query=creative workspace with blue overlay" alt="About Me">
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Contact Section -->
+            <section class="project-section" id="contact">
+                <div class="project-content">
+                    <div class="project-text">
+                        <h1 class="project-title">GET IN TOUCH</h1>
+                        <div class="project-author">Let's Work Together</div>
+                        
+                        <div class="project-description">
+                            <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
+                            
+                            <div class="contact-links">
+                                <a href="mailto:your.email@example.com" class="contact-link">Email</a>
+                                <a href="https://github.com/yourusername" target="_blank" class="contact-link">GitHub</a>
+                                <a href="https://linkedin.com/in/yourusername" target="_blank" class="contact-link">LinkedIn</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-item">
-                        <h3>Project Two</h3>
-                        <p>Interactive data visualization exploring complex datasets.</p>
-                    </div>
-                    <div class="project-item">
-                        <h3>Project Three</h3>
-                        <p>Experimental design system for digital products.</p>
+                    
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=800&width=800&query=communication devices with purple overlay" alt="Contact">
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="section" id="contact">
-            <div class="content">
-                <h2>Contact</h2>
-                <p>Get in touch for collaborations and opportunities.</p>
-                <div class="contact-links">
-                    <a href="mailto:chinaglian@gmail.com">Email</a>
-                    <a href="https://github.com/hugoo-chang?tab=overview&from=2025-04-01&to=2025-04-24" target="_blank">GitHub</a>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
-                </div>
-            </div>
-        </div>
+            </section>
+        </main>
+        
+        <!-- Menu Toggle -->
+        <button class="menu-toggle">
+            <span class="menu-icon"></span>
+        </button>
+        
+        <!-- Navigation Menu -->
+        <nav class="site-navigation">
+            <ul class="menu">
+                <li><a href="#project1">Business Analytics</a></li>
+                <li><a href="#project2">Data Visualization</a></li>
+                <li><a href="#project3">Design System</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </div>
-
-    <nav class="navigation">
-        <ul>
-            <li><a href="#intro" class="nav-link active">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#projects" class="nav-link">Projects</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-    </nav>
 
     <script src="script.js"></script>
 </body>

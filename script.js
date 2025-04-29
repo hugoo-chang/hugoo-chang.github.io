@@ -1,127 +1,83 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Typing animation for the intro text
-    const typingText = document.querySelector('.typing-text');
-    const originalText = typingText.textContent;
-    typingText.textContent = '';
+    // Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteNavigation = document.querySelector('.site-navigation');
     
-    let i = 0;
-    function typeWriter() {
-        if (i < originalText.length) {
-            typingText.textContent += originalText.charAt(i);
-            i++;
-            setTimeout(typeWriter, 150);
+    menuToggle.addEventListener('click', function() {
+        this.classList.toggle('menu-active');
+        siteNavigation.classList.toggle('active');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!menuToggle.contains(e.target) && !siteNavigation.contains(e.target) && siteNavigation.classList.contains('active')) {
+            menuToggle.classList.remove('menu-active');
+            siteNavigation.classList.remove('active');
         }
-    }
+    });
     
-    // Start typing animation
-    setTimeout(typeWriter, 1000);
-    
-    // Navigation functionality
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Remove active class from all links and sections
-            navLinks.forEach(l => l.classList.remove('active'));
-            sections.forEach(s => s.classList.remove('active'));
+            // Close menu if open
+            menuToggle.classList.remove('menu-active');
+            siteNavigation.classList.remove('active');
             
-            // Add active class to clicked link
-            this.classList.add('active');
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
             
-            // Get the target section and make it active
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            targetSection.classList.add('active');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
     
-    // Keyboard navigation
-    let currentIndex = 0;
+    // Highlight active section on scroll
+    const sections = document.querySelectorAll('.project-section');
+    const navLinks = document.querySelectorAll('.menu a');
     
-    document.addEventListener('keydown', function(e) {
-        // Arrow right or down to go forward
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-            currentIndex = (currentIndex + 1) % sections.length;
-            updateActiveSection();
-        }
+    function highlightNavigation() {
+        let scrollPosition = window.scrollY;
         
-        // Arrow left or up to go backward
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-            currentIndex = (currentIndex - 1 + sections.length) % sections.length;
-            updateActiveSection();
-        }
-    });
-    
-    function updateActiveSection() {
-        // Remove active class from all sections and links
-        sections.forEach(s => s.classList.remove('active'));
-        navLinks.forEach(l => l.classList.remove('active'));
-        
-        // Add active class to current section and corresponding link
-        sections[currentIndex].classList.add('active');
-        navLinks[currentIndex].classList.add('active');
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = '#' + section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
     }
     
-    // Handle scroll events for desktop
-    let scrollTimeout;
-    let isScrolling = false;
+    window.addEventListener('scroll', highlightNavigation);
     
-    window.addEventListener('wheel', function(e) {
-        if (isScrolling) return;
-        
-        isScrolling = true;
-        
-        if (e.deltaY > 0) {
-            // Scroll down
-            currentIndex = (currentIndex + 1) % sections.length;
-        } else {
-            // Scroll up
-            currentIndex = (currentIndex - 1 + sections.length) % sections.length;
-        }
-        
-        updateActiveSection();
-        
-        // Reset scroll flag after animation completes
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            isScrolling = false;
-        }, 800); // Match this to your CSS transition time
-    });
+    // Parallax effect for project images
+    const projectImages = document.querySelectorAll('.project-image img');
     
-    // Handle touch events for mobile
-    let touchStartY = 0;
+    function parallaxScroll() {
+        projectImages.forEach(image => {
+            const parent = image.parentElement;
+            const scrollPosition = window.pageYOffset;
+            const parentOffset = parent.offsetTop;
+            const distance = parentOffset - scrollPosition;
+            
+            if (Math.abs(distance) < window.innerHeight) {
+                image.style.transform = `translateY(${distance * 0.1}px)`;
+            }
+        });
+    }
     
-    document.addEventListener('touchstart', function(e) {
-        touchStartY = e.touches[0].clientY;
-    });
-    
-    document.addEventListener('touchend', function(e) {
-        if (isScrolling) return;
-        
-        const touchEndY = e.changedTouches[0].clientY;
-        const diff = touchStartY - touchEndY;
-        
-        if (Math.abs(diff) < 50) return; // Minimum swipe distance
-        
-        isScrolling = true;
-        
-        if (diff > 0) {
-            // Swipe up (go forward)
-            currentIndex = (currentIndex + 1) % sections.length;
-        } else {
-            // Swipe down (go backward)
-            currentIndex = (currentIndex - 1 + sections.length) % sections.length;
-        }
-        
-        updateActiveSection();
-        
-        // Reset scroll flag after animation completes
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            isScrolling = false;
-        }, 800); // Match this to your CSS transition time
-    });
+    window.addEventListener('scroll', parallaxScroll);
 });
